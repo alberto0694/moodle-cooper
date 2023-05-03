@@ -766,9 +766,7 @@ class behat_core_generator extends behat_generator_base {
         }
 
         $data['contextid'] = $context->id;
-        /** @var core_question_generator $qgenerator */
-        $qgenerator = $this->datagenerator->get_plugin_generator('core_question');
-        $qgenerator->create_question_category($data);
+        $this->datagenerator->get_plugin_generator('core_question')->create_question_category($data);
     }
 
     /**
@@ -815,9 +813,7 @@ class behat_core_generator extends behat_generator_base {
             $missingtypespecialcase = true;
         }
 
-        /** @var core_question_generator $qgenerator */
-        $qgenerator = $this->datagenerator->get_plugin_generator('core_question');
-        $questiondata = $qgenerator
+        $questiondata = $this->datagenerator->get_plugin_generator('core_question')
             ->create_question($data['qtype'], $which, $data);
 
         if ($missingtypespecialcase) {
@@ -966,7 +962,7 @@ class behat_core_generator extends behat_generator_base {
     /**
      * Creates an analytics model
      *
-     * @param array $data target
+     * @param target $data
      * @return void
      */
     protected function process_analytics_model($data) {
